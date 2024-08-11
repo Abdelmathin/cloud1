@@ -7,11 +7,21 @@ https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Instances:ins
 
 ```bash
 git clone git@github.com:Abdelmathin/cloud1.git
+```
+
+```bash
 cd cloud1
-cat << EOL > deployment/.env
-AWS_ACCESS_KEY_ID=(YOUR AWS_ACCESS_KEY_ID HERE)
-AWS_SECRET_ACCESS_KEY=(YOUR AWS_SECRET_ACCESS_KEY HERE)
-EOL
+```
+
+```bash
+echo 'AWS_ACCESS_KEY_ID=(YOUR AWS_ACCESS_KEY_ID HERE)' >> deployment/.env
+```
+
+```bash
+echo 'AWS_SECRET_ACCESS_KEY=(YOUR AWS_SECRET_ACCESS_KEY HERE)' >> deployment/.env
+```
+
+```bash
 make
 ```
 
