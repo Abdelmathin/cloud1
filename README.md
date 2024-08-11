@@ -14,21 +14,29 @@ cd cloud1
 ```
 
 ```bash
-echo 'AWS_ACCESS_KEY_ID=(YOUR AWS_ACCESS_KEY_ID HERE)' >> deployment/.env
-```
-
-```bash
-echo 'AWS_SECRET_ACCESS_KEY=(YOUR AWS_SECRET_ACCESS_KEY HERE)' >> deployment/.env
+cat deployment/env.example > deployment/.env # dir hna l keys dyawlk
 ```
 
 ```bash
 make
 ```
 
-## How to delpoy:
+## apply:
 
 ```bash
 cd deployment
+```
+
+```bash
 terraform init
-terraform delpoy
+```
+
+```bash
+terraform apply
+```
+
+## destroy:
+
+```bash
+terraform destroy
 ```
