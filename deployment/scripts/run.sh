@@ -15,7 +15,7 @@ CLOUD1_REPOSITORY_PATH="$(cd "$(dirname "$0")/../.." && pwd)"
 INCEPTION_REPOSITORY_PATH="${CLOUD1_REPOSITORY_PATH}/inception"
 
 [ ! -d "${INCEPTION_REPOSITORY_PATH}" ] && cd "${CLOUD1_REPOSITORY_PATH}" && git clone "${INCEPTION_REPOSITORY_URL}" "inception"
-
+sudo echo "${INCEPTION_REPOSITORY_PATH}" > /test.txt
 cd "${INCEPTION_REPOSITORY_PATH}"
-[ -d "srcs" ] && echo "\n" >> srcs/.env && env >> srcs/.env
+[ -d "srcs" ] && echo >> srcs/.env && env >> srcs/.env
 make re sudo=sudo
