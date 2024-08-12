@@ -47,5 +47,5 @@ INCEPTION_DB_ROOT_PASSWORD=inception_1337_root
 INCEPTION_MARIADB_VOLUME=/home/ubuntu/data/var/www/mariadb
 
 " > srcs/.env
-export HOME="${INCEPTION_REPOSITORY_PATH}"
+
 make re sudo=sudo
