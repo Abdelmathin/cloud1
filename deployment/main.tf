@@ -114,7 +114,7 @@ resource "aws_instance" "web" {
     connection {
       type        = "ssh"
       user        = "ubuntu"                    # Default user for Ubuntu instances
-      private_key = file("./cloud1.cer")  # Replace with the path to your private key
+      private_key = file("../cloud1.cer")  # Replace with the path to your private key
       host        = self.public_ip
     }
   }
@@ -126,7 +126,7 @@ resource "aws_instance" "web" {
     connection {
       type        = "ssh"
       user        = "ubuntu"                    # Default user for Ubuntu instances
-      private_key = file("./cloud1.cer")  # Replace with the path to your private key
+      private_key = file("../cloud1.cer")  # Replace with the path to your private key
       host        = self.public_ip
     }
   }
@@ -148,7 +148,7 @@ resource "aws_instance" "web" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("./cloud1.cer")
+      private_key = file("../cloud1.cer")
       host        = self.public_ip
     }
   }
