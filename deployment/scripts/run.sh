@@ -19,7 +19,8 @@ INCEPTION_REPOSITORY_PATH="${CLOUD1_REPOSITORY_PATH}/inception"
 [ ! -d "${INCEPTION_REPOSITORY_PATH}" ] && cd "${CLOUD1_REPOSITORY_PATH}" && git clone "${INCEPTION_REPOSITORY_URL}" "inception"
 
 cd "${INCEPTION_REPOSITORY_PATH}"
-[ -d "srcs" ] && env > srcs/.env
+# [ -d "srcs" ] && env > srcs/.env
 
-python3 -m http.server  80 --directory . --bind 0.0.0.0 &
-python3 -m http.server 443 --directory . --bind 0.0.0.0 &
+# python3 -m http.server  80 --directory . --bind 0.0.0.0 &
+# python3 -m http.server 443 --directory . --bind 0.0.0.0 &
+make re
