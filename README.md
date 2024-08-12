@@ -1,6 +1,12 @@
 # cloud1
 This project is an introduction to cloud servers
 
+## VPC dashboard
+
+https://us-west-2.console.aws.amazon.com/vpcconsole/home?region=us-west-2#Home:
+
+## Instances
+
 https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Instances:instanceState=running
 
 ## Get Started:
@@ -40,3 +46,7 @@ terraform apply
 ```bash
 terraform destroy
 ```
+
+
+
+

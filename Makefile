@@ -19,4 +19,9 @@ re: fclean all
 
 docker:
 	mkdir -p ${PWD}/tmp
-	docker run -it -v ${PWD}:/home/cloud1 -it -v ${PWD}/tmp:/tmp --env-file deployment/.env ubuntu:oracular bash -c "bash /home/cloud1/deployment/scripts/setup.sh && cd /home/cloud1 && exec bash"
+	docker run -it -v ${PWD}:/home/cloud1 -v ${PWD}/tmp:/tmp --env-file deployment/.env ubuntu:oracular bash -c "bash /home/cloud1/deployment/scripts/setup.sh && cd /home/cloud1 && cd deployment && terraform init && terraform apply -auto-approve && exec bash"
+
+push-ahabachi:
+	git add .
+	git commit -m "auto-commit"
+	git push origin ahabachi

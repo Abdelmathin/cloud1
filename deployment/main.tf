@@ -64,6 +64,13 @@ resource "aws_security_group" "web" {
     }
 
     ingress {
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
         from_port   = 22
         to_port     = 22
         protocol    = "tcp"
@@ -92,7 +99,7 @@ resource "aws_instance" "web" {
     vpc_security_group_ids = [aws_security_group.web.id]  # Attach the security group using vpc_security_group_ids
 
     tags = {
-        Name = "inception-web-server"
+        Name = "cloud1-ahabachi"
     }
     user_data = file("scripts/run.sh")
 }
