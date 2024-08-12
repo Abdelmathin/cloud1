@@ -99,7 +99,7 @@ resource "aws_instance" "web" {
     vpc_security_group_ids = [aws_security_group.web.id]  # Attach the security group using vpc_security_group_ids
 
     tags = {
-        Name = "inception-web-server"
+        Name = "cloud1-ahabachi"
     }
     user_data = file("scripts/run.sh")
 }
