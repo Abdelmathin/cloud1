@@ -96,19 +96,19 @@ resource "aws_instance" "web" {
   }
 
   user_data = <<-EOF
-               #!/bin/bash
+              #!/bin/bash
               apt-get update
               
               # Install Docker
               sudo snap install docker
-              
-              
-              
+              sudo apt-get install certbot
+              sudo apt-get install python3-certbot-docker
+              sudo certbot certonly --standalone -d yourdomain.com -d www.mhcloud1.tech
               EOF
 
   # File provisioners with explicit connection block
   provisioner "file" {
-    source      = "/home/vagrant/project/docker-compose.yml"   # Path to your docker-compose.yml file
+    source      = "/home/vagrant/project/srcs/docker-compose.yml"   # Path to your docker-compose.yml file
     destination = "/home/ubuntu/docker-compose.yml"
 
     connection {
@@ -120,7 +120,7 @@ resource "aws_instance" "web" {
   }
 
   provisioner "file" {
-    source      = "/home/vagrant/project/nginx.conf"           # Path to your nginx.conf file
+    source      = "/home/vagrant/project/srcs/requirments/nginx/conf/nginx.conf"           # Path to your nginx.conf file
     destination = "/home/ubuntu/nginx.conf"
 
     connection {
@@ -132,14 +132,10 @@ resource "aws_instance" "web" {
   }
 
   # Remote exec provisioner with explicit connection block
-    provisioner "remote-exec" {
+  provisioner "remote-exec" {
     inline = [
       "echo 'Starting file transfer and setup...'",
 
-      # "sudo mv /home/ubuntu/docker-compose.yml /root/docker-compose.yml || { echo 'Failed to move docker-compose.yml'; exit 1; }",
-      # "sudo mv /home/ubuntu/nginx.conf /root/nginx.conf || { echo 'Failed to move nginx.conf'; exit 1; }",
-
-      # "cd /root || { echo 'Failed to change directory to /root'; exit 1; }",
       "sudo /home/ubuntu/docker-compose up -d || { echo 'Failed to start Docker containers'; exit 1; }",
 
       "echo 'File transfer and setup completed successfully!'"
@@ -152,10 +148,29 @@ resource "aws_instance" "web" {
       host        = self.public_ip
     }
   }
+}
 
+# Allocate an Elastic IP
+resource "aws_eip" "web_eip" {
+  domain = "vpc"
+}
+
+# Associate the Elastic IP with the EC2 instance
+resource "aws_eip_association" "web_eip_assoc" {
+  instance_id   = aws_instance.web.id
+  allocation_id = aws_eip.web_eip.id
+}
+
+# Create a DNS record in Route 53
+resource "aws_route53_record" "web" {
+  zone_id = "12814864"  # Replace with your Route 53 hosted zone ID
+  name    = "mhcloud1.tech"  # Replace with your desired DNS name
+  type    = "A"
+  ttl     = "28800"
+  records = [aws_eip.web_eip.public_ip]
 }
 
 output "instance_ip" {
   description = "Public IP of the EC2 instance"
-  value       = aws_instance.web.public_ip
+  value       = aws_eip.web_eip.public_ip
 }
