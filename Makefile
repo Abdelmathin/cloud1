@@ -4,7 +4,7 @@ NAME=cloud1
 
 all: $(NAME)
 
-$(NAME): docker
+$(NAME): ubuntu-container
 
 clean:
 	@echo "clean"
@@ -17,9 +17,9 @@ fclean: clean
 
 re: fclean all
 
-docker:
+ubuntu-container:
 	mkdir -p ${PWD}/tmp
-	docker run -it -v ${PWD}:/home/cloud1 -v ${PWD}/tmp:/tmp --env-file deployment/.env ubuntu:oracular bash -c "bash /home/cloud1/deployment/scripts/setup.sh && cd /home/cloud1 && cd deployment && terraform init && terraform apply -auto-approve && exec bash"
+	${sudo} docker run -it -v ${PWD}:/home/cloud1 -v ${PWD}/tmp:/tmp --env-file deployment/.env ubuntu:oracular bash -c "bash /home/cloud1/deployment/scripts/setup-ubuntu.sh && cd /home/cloud1 && cd deployment && terraform init && terraform apply -auto-approve && exec bash"
 
 push-ahabachi:
 	git add .
