@@ -22,8 +22,8 @@ INCEPTION_WORKDIR=/home/ubuntu/
 
 # # # # # # # # # # # nginx # # # # # # # # # # #
 INCEPTION_PORT=443
-INCEPTION_DOMAIN_NAME='mhcloud.tech'
-INCEPTION_SERVER_NAMES='mhcloud.tech'
+INCEPTION_DOMAIN_NAME='52.41.214.79'
+INCEPTION_SERVER_NAMES='52.41.214.79'
 # # # # # # # # # # wordpress # # # # # # # # # #
 INCEPTION_WP_VERSION=6.2
 INCEPTION_PHP_VERSION=7.4

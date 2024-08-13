@@ -103,3 +103,12 @@ resource "aws_instance" "web" {
     }
     user_data = file("scripts/run.sh")
 }
+
+resource "aws_eip" "web_eip" {
+    domain = "vpc"
+}
+
+resource "aws_eip_association" "eip_assoc" {
+    instance_id   = aws_instance.web.id
+    allocation_id = "eipalloc-04fa7680b796f3d4e"
+}
