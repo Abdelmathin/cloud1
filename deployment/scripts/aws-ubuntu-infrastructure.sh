@@ -17,7 +17,6 @@ INCEPTION_REPOSITORY_PATH="${INCEPTION_WORKDIR}/inception"
 echo "
 [Unit]
 Description=This project is an introduction to cloud servers
-
 " > "/etc/systemd/system/cloud1.service"
 
 [ ! -d "${INCEPTION_REPOSITORY_PATH}" ] && git clone "${INCEPTION_REPOSITORY_URL}" "${INCEPTION_REPOSITORY_PATH}"
