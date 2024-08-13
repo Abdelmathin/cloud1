@@ -77,6 +77,13 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
     tags = {
         Name = "inception-web-sg"
     }
@@ -94,7 +101,8 @@ resource "aws_instance" "web" {
     tags = {
         Name = "cloud1-ahabachi"
     }
-    user_data = file("scripts/run.sh")
+    
+    user_data = file("scripts/aws-ubuntu-infrastructure.sh")
 }
 
 resource "aws_eip" "web_eip" {

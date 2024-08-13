@@ -1,29 +1,36 @@
 #!/bin/bash
-apt-get update
-apt-get install -y git
-apt-get install -y python3
-apt-get install -y make
-snap install docker
+DEBIAN_FRONTEND=noninteractive
+apt-get   update
+apt-get   install -y git
+apt-get   install -y python3
+apt-get   install -y tzdata
+apt-get   install -y python3
+apt-get   install -y make
+snap      install docker
 systemctl start docker
 systemctl enable docker
 
-if [ -z "${INCEPTION_REPOSITORY_URL}" ]; then
-    INCEPTION_REPOSITORY_URL="https://github.com/Abdelmathin/inception"
-fi
+INCEPTION_WORKDIR="/home/ubuntu"
+INCEPTION_REPOSITORY_URL="https://github.com/Abdelmathin/inception"
+INCEPTION_REPOSITORY_PATH="${INCEPTION_WORKDIR}/inception"
 
-CLOUD1_REPOSITORY_PATH="$(cd "$(dirname "$0")/../.." && pwd)"
-INCEPTION_REPOSITORY_PATH=/home/ubuntu/inception
+echo "
+[Unit]
+Description=This project is an introduction to cloud servers
+
+" > "/etc/systemd/system/cloud1.service"
 
 [ ! -d "${INCEPTION_REPOSITORY_PATH}" ] && git clone "${INCEPTION_REPOSITORY_URL}" "${INCEPTION_REPOSITORY_PATH}"
-sudo echo "${INCEPTION_REPOSITORY_PATH}" > /test.txt
-cd "${INCEPTION_REPOSITORY_PATH}"
-[ -d "srcs" ] && echo "
-INCEPTION_WORKDIR=/home/ubuntu/
+
+echo "
+
+INCEPTION_WORKDIR=${INCEPTION_WORKDIR}
 
 # # # # # # # # # # # nginx # # # # # # # # # # #
 INCEPTION_PORT=443
-INCEPTION_DOMAIN_NAME='52.41.214.79'
-INCEPTION_SERVER_NAMES='52.41.214.79'
+INCEPTION_PORTS=443
+INCEPTION_DOMAIN_NAME=52.41.214.79
+INCEPTION_SERVER_NAMES=52.41.214.79
 # # # # # # # # # # wordpress # # # # # # # # # #
 INCEPTION_WP_VERSION=6.2
 INCEPTION_PHP_VERSION=7.4
@@ -35,7 +42,7 @@ INCEPTION_WP_AUTHOR_USER=abdelmathin
 INCEPTION_WP_AUTHOR_MAIL=ahabachi@student.1337.ma
 INCEPTION_WP_AUTHOR_PASSWORD=inception_1337_user
 INCEPTION_WP_BIND_PORT=9000
-INCEPTION_WORDPRESS_VOLUME=/home/ubuntu/data/var/www/wordpress
+INCEPTION_WORDPRESS_VOLUME=${INCEPTION_WORKDIR}/data/var/www/wordpress
 
 # # # # # # # # # #  mariadb  # # # # # # # # # #
 INCEPTION_DB_NAME=ahabachi
@@ -44,8 +51,8 @@ INCEPTION_DB_PASSWORD=inception_1337_user
 INCEPTION_DB_BIND_HOST=mariadb
 INCEPTION_DB_BIND_PORT=3306
 INCEPTION_DB_ROOT_PASSWORD=inception_1337_root
-INCEPTION_MARIADB_VOLUME=/home/ubuntu/data/var/www/mariadb
+INCEPTION_MARIADB_VOLUME=${INCEPTION_WORKDIR}/data/var/www/mariadb
 
-" > srcs/.env
+" > "${INCEPTION_REPOSITORY_PATH}/srcs/.env"
 
-make re sudo=sudo
+cd "${INCEPTION_REPOSITORY_PATH}" && sudo make re sudo=sudo

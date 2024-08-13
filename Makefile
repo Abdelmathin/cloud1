@@ -12,8 +12,8 @@ clean:
 fclean: clean
 	rm -rf tmp
 	rm -rf deployment/.terraform
-	rm -rf deployment/.terraform.*
 	rm -rf deployment/terraform.*
+	rm -rf deployment/.terraform.*
 
 re: fclean all
 
