@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "us-west-2"  # Replace with your desired region
+    region = "us-west-2"
 }
 
 resource "aws_vpc" "main" {
@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "public" {
     vpc_id                  = aws_vpc.main.id
     cidr_block              = "10.0.1.0/24"
-    availability_zone       = "us-west-2a"  # Replace with your desired AZ
+    availability_zone       = "us-west-2a"
     map_public_ip_on_launch = true
     tags = {
         Name = "inception-public-subnet"
@@ -24,7 +24,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
     vpc_id            = aws_vpc.main.id
     cidr_block        = "10.0.2.0/24"
-    availability_zone = "us-west-2a"  # Replace with your desired AZ
+    availability_zone = "us-west-2a"
     tags = {
         Name = "inception-private-subnet"
     }
@@ -77,26 +77,19 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
     tags = {
         Name = "inception-web-sg"
     }
 }
 
 resource "aws_instance" "web" {
-    ami           = "ami-08c47e4b2806964ce"  # Example Ubuntu AMI (replace with your preferred AMI)
-    instance_type = "t2.2xlarge"             # Free tier eligible instance type
-    subnet_id     = aws_subnet.public.id     # Place the instance in the public subnet
+    ami           = "ami-02c41ffdfd4172736"  # 20.04 LTS
+    instance_type = "t3.2xlarge"
+    subnet_id     = aws_subnet.public.id
 
-    key_name      = "cloud1"                 # Replace with your actual key pair name
+    key_name      = "cloud1"
 
-    vpc_security_group_ids = [aws_security_group.web.id]  # Attach the security group using vpc_security_group_ids
+    vpc_security_group_ids = [aws_security_group.web.id]
 
     tags = {
         Name = "cloud1-ahabachi"
@@ -112,4 +105,3 @@ resource "aws_eip_association" "eip_assoc" {
     instance_id   = aws_instance.web.id
     allocation_id = "eipalloc-04fa7680b796f3d4e"
 }
-
