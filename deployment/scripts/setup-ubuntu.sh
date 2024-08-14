@@ -1,5 +1,11 @@
 #!/bin/sh
 
+cat <<EOL > /home/vagrant/cloud1/test-env
+[default]
+aws_access_key_id     = ${AWS_ACCESS_KEY_ID}
+aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
+EOL
+
 rm -rf /tmp/cloud1 && mkdir -p /tmp/cloud1
 cd /tmp/cloud1
 
@@ -19,5 +25,6 @@ cat <<EOL > ~/.aws/credentials
 aws_access_key_id     = ${AWS_ACCESS_KEY_ID}
 aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
 EOL
+
 
 rm -rf /tmp/cloud1
