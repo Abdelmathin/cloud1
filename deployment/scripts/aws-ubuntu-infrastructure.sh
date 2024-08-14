@@ -25,26 +25,6 @@ sudo systemctl enable docker
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-echo "
-[Unit]
-Description=This project is an introduction to cloud servers
-After=network.target
-StartLimitIntervalSec=0
-
-[Service]
-RestartSec=5
-ExecStart=bash -c 'cd ${INCEPTION_WORKDIR} && date >> restart.log && cd inception && sudo make sudo=sudo'
-
-
-[Install]
-WantedBy=multi-user.target
-
-" > "/etc/systemd/system/cloud1.service"
-
-sudo systemctl start  cloud1.service             > /dev/null 2> /dev/null
-sudo systemctl enable cloud1.service             > /dev/null 2> /dev/null
-sudo systemctl status cloud1.service --no-pager  > /dev/null 2> /dev/null
-
 sudo git clone "${INCEPTION_REPOSITORY_URL}" "inception"
 
 sudo echo "
@@ -79,5 +59,22 @@ INCEPTION_DB_ROOT_PASSWORD=inception_1337_root
 INCEPTION_MARIADB_VOLUME=${INCEPTION_WORKDIR}/data/var/www/mariadb
 
 " > "inception/srcs/.env"
+# # # # # # # # # # # # Configure Service # # # # # # # # # # # #
+echo "
+[Unit]
+Description=This project is an introduction to cloud servers
+After=network.target
+StartLimitIntervalSec=0
 
-cd "inception" && sudo make sudo=sudo
+[Service]
+RestartSec=5
+ExecStart=bash -c 'cd ${INCEPTION_WORKDIR} && date >> restart.log && cd inception && sudo make sudo=sudo'
+
+[Install]
+WantedBy=multi-user.target
+
+" > "/etc/systemd/system/cloud1.service"
+
+sudo systemctl start  cloud1.service             > /dev/null 2> /dev/null
+sudo systemctl enable cloud1.service             > /dev/null 2> /dev/null
+sudo systemctl status cloud1.service --no-pager  > /dev/null 2> /dev/null
