@@ -34,7 +34,7 @@ StartLimitIntervalSec=0
 [Service]
 RestartSec=5
 ExecStart=bash -c 'cd ${INCEPTION_WORKDIR} && date >> restart.log && cd inception && sudo make sudo=sudo'
-Restart=always
+
 
 [Install]
 WantedBy=multi-user.target
@@ -54,8 +54,8 @@ INCEPTION_WORKDIR=${INCEPTION_WORKDIR}
 # # # # # # # # # # # nginx # # # # # # # # # # #
 INCEPTION_PORT=443
 INCEPTION_PORTS=443
-INCEPTION_DOMAIN_NAME=52.41.214.79
-INCEPTION_SERVER_NAMES=52.41.214.79
+INCEPTION_DOMAIN_NAME=mhcloud1.tech
+INCEPTION_SERVER_NAMES=mhcloud1.tech
 # # # # # # # # # # wordpress # # # # # # # # # #
 INCEPTION_WP_VERSION=6.2
 INCEPTION_PHP_VERSION=7.4
