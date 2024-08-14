@@ -1,27 +1,53 @@
 #!/bin/bash
-DEBIAN_FRONTEND=noninteractive
-apt-get   update
-apt-get   install -y git
-apt-get   install -y python3
-apt-get   install -y tzdata
-apt-get   install -y python3
-apt-get   install -y make
-snap      install docker
-systemctl start docker
-systemctl enable docker
-
 INCEPTION_WORKDIR="/home/ubuntu"
 INCEPTION_REPOSITORY_URL="https://github.com/Abdelmathin/inception"
-INCEPTION_REPOSITORY_PATH="${INCEPTION_WORKDIR}/inception"
+#
+cd "${INCEPTION_WORKDIR}"
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+sudo apt update  -y
+sudo apt install -y curl
+# # # # # # # # # # # # Configure Make # # # # # # # # # # # #
+sudo apt install -y make
+# # # # # # # # # # # # Configure git  # # # # # # # # # # # #
+sudo apt install -y git
+# # # # # # # # # # # # Configure Python # # # # # # # # # # #
+( DEBIAN_FRONTEND=noninteractive && sudo apt install -y tzdata  )
+( DEBIAN_FRONTEND=noninteractive && sudo apt install -y python3 )
+# # # # # # # # # # # # Configure SSH  # # # # # # # # # # # # #
+sudo apt install -y openssh-server
+sudo systemctl start  ssh             > /dev/null 2> /dev/null
+sudo systemctl enable ssh             > /dev/null 2> /dev/null
+sudo systemctl status ssh --no-pager  > /dev/null 2> /dev/null
+# # # # # # # # # # # # Configure Docker # # # # # # # # # # # #
+snap install   docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo "
 [Unit]
 Description=This project is an introduction to cloud servers
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+RestartSec=5
+ExecStart=bash -c 'cd ${INCEPTION_WORKDIR} && date >> restart.log && cd inception && sudo make sudo=sudo'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
 " > "/etc/systemd/system/cloud1.service"
 
-[ ! -d "${INCEPTION_REPOSITORY_PATH}" ] && git clone "${INCEPTION_REPOSITORY_URL}" "${INCEPTION_REPOSITORY_PATH}"
+sudo systemctl start  cloud1.service             > /dev/null 2> /dev/null
+sudo systemctl enable cloud1.service             > /dev/null 2> /dev/null
+sudo systemctl status cloud1.service --no-pager  > /dev/null 2> /dev/null
 
-echo "
+sudo git clone "${INCEPTION_REPOSITORY_URL}" "inception"
+
+sudo echo "
 
 INCEPTION_WORKDIR=${INCEPTION_WORKDIR}
 
@@ -52,6 +78,6 @@ INCEPTION_DB_BIND_PORT=3306
 INCEPTION_DB_ROOT_PASSWORD=inception_1337_root
 INCEPTION_MARIADB_VOLUME=${INCEPTION_WORKDIR}/data/var/www/mariadb
 
-" > "${INCEPTION_REPOSITORY_PATH}/srcs/.env"
+" > "inception/srcs/.env"
 
-cd "${INCEPTION_REPOSITORY_PATH}" && sudo make re sudo=sudo
+cd "inception" && sudo make sudo=sudo
