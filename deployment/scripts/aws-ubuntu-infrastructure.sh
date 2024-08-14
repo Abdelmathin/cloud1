@@ -5,7 +5,6 @@ INCEPTION_REPOSITORY_URL="https://github.com/Abdelmathin/inception"
 cd "${INCEPTION_WORKDIR}"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 sudo apt update  -y
-sudo apt install -y curl
 # # # # # # # # # # # # Configure Make # # # # # # # # # # # #
 sudo apt install -y make
 # # # # # # # # # # # # Configure git  # # # # # # # # # # # #
