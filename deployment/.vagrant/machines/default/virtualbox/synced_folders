@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/cloud1":{"guestpath":"/home/vagrant/cloud1","hostpath":"/Users/momayaz/Desktop/cloud1","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/momayaz/Desktop/cloud1/deployment","disabled":false,"__vagrantfile":true}}}
