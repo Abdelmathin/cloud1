@@ -1,0 +1,98 @@
+#  **************************************************************************  #
+#                                                                              #
+#                                                          :::      ::::::::   #
+#    docker-compose.yml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ahabachi <ahabachi@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/12 14:58:50 by ahabachi          #+#    #+#              #
+#    Updated: 2023/05/13 00:08:42 by ahabachi         ###   ########.fr        #
+#                                                                              #
+#  **************************************************************************  #
+#                                                                              #
+#   █████████            ██████████         ██████████         ██████████      #
+#   ██     ██                    ██                 ██         ██      ██      #
+#          ██                    ██                 ██         ██      ██      #
+#          ██                    ██                 ██                 ██      #
+#          ██            ██████████         ██████████                 ██      #
+#          ██                    ██                 ██                 ██      #
+#          ██                    ██                 ██                 ██      #
+#          ██                    ██                 ██                 ██      #
+#       ████████         ██████████         ██████████                 ██      #
+#                                                                              #
+#  **************************************************************************  #
+
+version: "3.6"
+
+networks:
+    ahabachi-inception-network:
+        name: ahabachi-inception-network
+        driver: bridge
+
+volumes:
+    ahabachi-inception-wp-volume:
+        name: ahabachi-inception-wp-volume
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: ${INCEPTION_WORDPRESS_VOLUME}
+    ahabachi-inception-db-volume:
+        name: ahabachi-inception-db-volume
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: ${INCEPTION_MARIADB_VOLUME}
+
+services:
+    mariadb:
+        image: mariadb:ahabachi-inception
+        container_name: mariadb
+        build: requirements/mariadb
+        env_file: .env
+        networks:
+            - ahabachi-inception-network
+        volumes:
+            -  ahabachi-inception-db-volume:/var/lib/mysql
+        restart: always
+    wordpress:
+        image: wordpress:ahabachi-inception
+        container_name: wordpress
+        build: requirements/wordpress
+        volumes:
+            - ahabachi-inception-wp-volume:/var/www/wordpress
+        depends_on:
+            - mariadb
+        env_file: .env
+        networks:
+            - ahabachi-inception-network
+        restart: always
+    nginx:
+        image: nginx:ahabachi-inception
+        container_name: nginx
+        build: ./requirements/nginx
+        ports:
+            - ${INCEPTION_PORT}:${INCEPTION_PORT}
+        environment:
+            - INCEPTION_PORT=${INCEPTION_PORT}
+            - INCEPTION_DOMAIN_NAME=${INCEPTION_DOMAIN_NAME}
+            - INCEPTION_SERVER_NAMES=${INCEPTION_SERVER_NAMES}
+            - INCEPTION_WP_BIND_PORT=${INCEPTION_WP_BIND_PORT}
+        depends_on:
+            - mariadb
+            - wordpress
+        volumes:
+            -  ahabachi-inception-wp-volume:/var/www/wordpress
+        networks:
+            - ahabachi-inception-network
+        restart: always
+
+    adminer:
+        image: adminer
+        container_name: adminer
+        ports:
+            - ${ADMINER_PORT}:${ADMINER_PORT}
+        networks:
+            - ahabachi-inception-network
+        restart: always
