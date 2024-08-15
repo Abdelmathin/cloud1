@@ -6,6 +6,5 @@ tmp
 .terraform*
 terraform.tfstate
 terraform.*
-.env
 .aws
 .vagrant*
