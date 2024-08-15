@@ -1,5 +1,3 @@
-*.pem
-*.cer
 .DS_Store
 __pycache__
 *.pyo
