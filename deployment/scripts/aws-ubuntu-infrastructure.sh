@@ -7,8 +7,6 @@ cd "${INCEPTION_WORKDIR}"
 sudo apt update  -y
 # # # # # # # # # # # # Configure Make # # # # # # # # # # # #
 sudo apt install -y make
-# # # # # # # # # # # # Configure git  # # # # # # # # # # # #
-sudo apt install -y git
 # # # # # # # # # # # # Configure Python # # # # # # # # # # #
 ( DEBIAN_FRONTEND=noninteractive && sudo apt install -y tzdata  )
 ( DEBIAN_FRONTEND=noninteractive && sudo apt install -y python3 )
