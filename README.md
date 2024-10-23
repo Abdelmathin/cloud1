@@ -39,6 +39,22 @@ Before you begin, make sure you have the following installed on your machine:
 
 You'll also need an AWS account with the necessary permissions to create resources such as VPCs and EC2 instances.
 
+## Key Components
+- **WordPress:** The popular content management system (CMS).
+- **MariaDB:** The relational database management system.
+- **Nginx:** The high-performance web server.
+- **Terraform:** The infrastructure as code tool used for provisioning and managing cloud resources.
+
+## What You'll Learn
+- How to configure your AWS environment for hosting WordPress.
+- Steps to set up a MariaDB database.
+- Configuring Nginx as the web server for your WordPress site.
+- Managing the entire deployment process with Terraform.
+
+---
+
+Let's get started on this exciting journey to deploy your WordPress website on AWS!
+
 ## Quick Start
 
 ### Cloning the Repository
