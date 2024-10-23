@@ -56,6 +56,27 @@ cat deployment/env.example > deployment/.env
 > AWS_SECRET_ACCESS_KEY=LAfhkfj8PUKDOhxGVTduGS2173R5O4FQjYhXJItI
 > ```
 
+### Deployment
+
+To deploy the infrastructure, navigate to the `deployment` directory, initialize Terraform, and apply the configuration:
+
+> ```bash
+> cd deployment
+> terraform init
+> terraform apply
+> ```
+
+### Destroying Resources
+
+To destroy all the cloud resources when you no longer need them:
+
+> ```bash
+> terraform destroy
+> ```
+
+
+
+
 
 <!--
 # cloud1
