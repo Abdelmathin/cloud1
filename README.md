@@ -151,6 +151,20 @@ end
 - [VPC Dashboard](https://us-west-2.console.aws.amazon.com/vpcconsole/home?region=us-west-2#Home)
 - [EC2 Instances](https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Instances:instanceState=running)
 
+### Get Involved
+If you have any questions, suggestions, or improvements regarding this deployment process, feel free to open an issue or submit a pull request in the repository. Your contributions are always welcome!
+
+Thank you for using this guide, and happy coding! 🎉
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
+
+### GNU General Public License v3.0
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU General Public License](https://www.gnu.org/licenses/) for more details.
 
 
 <!--
