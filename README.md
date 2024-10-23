@@ -60,19 +60,19 @@ cat deployment/env.example > deployment/.env
 
 To deploy the infrastructure, navigate to the `deployment` directory, initialize Terraform, and apply the configuration:
 
-> ```bash
-> cd deployment
-> terraform init
-> terraform apply
-> ```
+```bash
+cd deployment
+terraform init
+terraform apply
+```
 
 ### Destroying Resources
 
 To destroy all the cloud resources when you no longer need them:
 
-> ```bash
-> terraform destroy
-> ```
+```bash
+terraform destroy
+```
 
 
 
