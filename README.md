@@ -27,7 +27,7 @@ This project automates cloud infrastructure deployment on AWS using Terraform. I
 - EC2 instances
 - Automated deployment using Make and Terraform
 
-## Prerequisites
+## ✅&nbsp; Prerequisites
 
 Before you begin, make sure you have the following installed on your machine:
 - [AWS CLI](https://aws.amazon.com/cli/)
@@ -151,12 +151,12 @@ end
 - [VPC Dashboard](https://us-west-2.console.aws.amazon.com/vpcconsole/home?region=us-west-2#Home)
 - [EC2 Instances](https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Instances:instanceState=running)
 
-### Get Involved
+### ❤️&nbsp; Get Involved
 If you have any questions, suggestions, or improvements regarding this deployment process, feel free to open an issue or submit a pull request in the repository. Your contributions are always welcome!
 
 Thank you for using this guide, and happy coding! 🎉
 
-## License
+## 📘&nbsp; License
 
 This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
 
