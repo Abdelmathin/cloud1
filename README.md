@@ -1,5 +1,11 @@
 # Cloud1
 
+<p align="center">
+    <a href="" target="_blank">
+        <img style="border-radius: 10px;" src="docs/assets/img/banner.png" width="" alt="Terraform + AWS" />
+    </a>
+</p>
+
 Welcome to the `cloud1` project! This project serves as an introduction to deploying and managing cloud infrastructure using AWS. It walks you through setting up a VPC, EC2 instances, and managing your resources with Terraform.
 
 ## Table of Contents
