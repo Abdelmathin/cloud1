@@ -84,7 +84,9 @@ cat deployment/env.example > deployment/.env
 
 The `cloud1.cer` file is a certificate used for secure communication between your application and the AWS services.
 
-It is essential for ensuring that your connections are encrypted and trustworthy. This certificate may be required for various services, including database connections or API calls, to verify the identity of the server you are communicating with.
+It is essential for ensuring that your connections are encrypted and trustworthy.
+
+This certificate may be required for various services, including database connections or API calls, to verify the identity of the server you are communicating with.
 
 Make sure to keep this file secure and only share it with trusted applications and environments. 
 
