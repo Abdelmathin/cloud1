@@ -47,8 +47,9 @@ Copy the example environment file to create your own `.env` file, then replace t
 ```bash
 cat deployment/env.example > deployment/.env
 ```
-[NOTE]
-Note: The keys below are just fake examples. Replace them with your actual AWS credentials in the .env file.
+[!NOTE]
+
+The keys below are just fake examples. Replace them with your actual AWS credentials in the .env file.
 
 ```bash
 AWS_ACCESS_KEY_ID=AKIAXYKJVQUW7ZFRCXUW
