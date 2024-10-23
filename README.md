@@ -40,7 +40,20 @@ git clone git@github.com:Abdelmathin/cloud1.git
 cd cloud1
 ```
 
+### Setting Up Environment Variables
 
+Copy the example environment file to create your own `.env` file, then replace the placeholders with your AWS keys and configurations:
+
+```bash
+cat deployment/env.example > deployment/.env
+```
+[NOTE]
+Note: The keys below are just fake examples. Replace them with your actual AWS credentials in the .env file.
+
+```bash
+AWS_ACCESS_KEY_ID=AKIAXYKJVQUW7ZFRCXUW
+AWS_SECRET_ACCESS_KEY=LAfhkfj8PUKDOhxGVTduGS2173R5O4FQjYhXJItI
+```
 
 
 <!--
