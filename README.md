@@ -74,7 +74,10 @@ To destroy all the cloud resources when you no longer need them:
 terraform destroy
 ```
 
+### AWS Console Links
 
+- [VPC Dashboard](https://us-west-2.console.aws.amazon.com/vpcconsole/home?region=us-west-2#Home)
+- [EC2 Instances](https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Instances:instanceState=running)
 
 
 
