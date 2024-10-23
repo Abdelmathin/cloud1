@@ -1,4 +1,4 @@
-# Deploying a WordPress Website with MariaDB and Nginx on AWS Using Terraform
+# 🚀 Deploying a WordPress Website with MariaDB and Nginx on AWS Using Terraform
 
 <p align="center">
     <a href="" target="_blank">
