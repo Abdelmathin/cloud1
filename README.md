@@ -51,10 +51,10 @@ cat deployment/env.example > deployment/.env
 > [!NOTE]  
 > The keys below are just fake examples. Replace them with your actual AWS credentials in the .env file.
 
-```bash
-AWS_ACCESS_KEY_ID=AKIAXYKJVQUW7ZFRCXUW
-AWS_SECRET_ACCESS_KEY=LAfhkfj8PUKDOhxGVTduGS2173R5O4FQjYhXJItI
-```
+> ```bash
+> AWS_ACCESS_KEY_ID=AKIAXYKJVQUW7ZFRCXUW
+> AWS_SECRET_ACCESS_KEY=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
+> ```
 
 
 <!--
