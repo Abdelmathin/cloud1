@@ -11,6 +11,7 @@ Welcome to the `cloud1` project! This project serves as an introduction to deplo
   - [Deployment](#deployment)
   - [Destroying Resources](#destroying-resources)
   - [Running Terraform with Vagrant](#running-terraform-with-vagrant)
+  - [Vagrant Configuration](#vagrant-configuration)
 - [AWS Console Links](#aws-console-links)
 
 ## Overview
@@ -100,6 +101,14 @@ Inside the VM, navigate to the synced project folder:
 ```bash
 cd /home/vagrant/cloud1
 ```
+
+4. **Do previous steps:**
+
+Follow the steps for setting up environment variables and initializing Terraform as previously described.
+
+### Vagrant Configuration
+
+The following Vagrantfile sets up a virtual machine using Vagrant and VirtualBox as the provider.
 
 ```ruby
 Vagrant.configure("2") do |config|
