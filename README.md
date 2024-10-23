@@ -10,6 +10,7 @@ Welcome to the `cloud1` project! This project serves as an introduction to deplo
   - [Setting Up Environment Variables](#setting-up-environment-variables)
   - [Deployment](#deployment)
   - [Destroying Resources](#destroying-resources)
+  - [Running Terraform with Vagrant](#running-terraform-with-vagrant)
 - [AWS Console Links](#aws-console-links)
 
 ## Overview
@@ -72,6 +73,46 @@ To destroy all the cloud resources when you no longer need them:
 
 ```bash
 terraform destroy
+```
+
+### Running Terraform with Vagrant
+
+You can also run the previous example with this Vagrantfile. This allows you to manage your infrastructure in a consistent environment without needing to configure Terraform and other dependencies directly on your local machine.
+
+1. **Start the Vagrant VM:**
+
+Navigate to the root of the project directory and bring up the Vagrant VM:
+
+```bash
+vagrant up
+```
+
+2. **SSH into the VM:**
+Once the VM is up, SSH into it:
+
+```bash
+vagrant ssh
+```
+
+3. **Navigate to the synced folder:**
+Inside the VM, navigate to the synced project folder:
+
+```bash
+cd /home/vagrant/cloud1
+```
+
+```ruby
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/focal64"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 2
+    end
+
+    config.vm.provision "shell", path: "./scripts/setup-ubuntu.sh"
+    config.vm.synced_folder "../", "/home/vagrant/cloud1"
+end
 ```
 
 ### AWS Console Links
