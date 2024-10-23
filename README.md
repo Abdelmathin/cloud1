@@ -27,6 +27,8 @@ Before you begin, make sure you have the following installed on your machine:
 - [AWS CLI](https://aws.amazon.com/cli/)
 - [Terraform](https://www.terraform.io/)
 - [Git](https://git-scm.com/)
+- [Vagrant](https://www.vagrantup.com/)
+- [VirtualBox](https://www.virtualbox.org/)
 - [Make](https://www.gnu.org/software/make/)
 
 You'll also need an AWS account with the necessary permissions to create resources such as VPCs and EC2 instances.
